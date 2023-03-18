@@ -40,7 +40,7 @@ const options = {
             
         } else {
             btnEl.removeAttribute('disabled');
-            // const transformTime = convertMs(deltaTime);
+           
             btnEl.addEventListener('click', onStartBtnClick);
         }
                
@@ -71,11 +71,13 @@ const inputDate = flatpickr('input[type="text"]', options);
             const transformTime = convertMs(deltaTime);
             console.log(transformTime);
 
-            // вызываем функцию по записи времени в таймер
+            // вызываем функцию по записи времени в поля таймера
             сountdownTime(transformTime);
 
+            btnEl.setAttribute('disabled', true);
+
             // когда таймер закончился очищаем интервал
-           if (deltaTime < 1) {
+           if (deltaTime < 1000) {
            clearInterval(timeId);
            return;
     }
