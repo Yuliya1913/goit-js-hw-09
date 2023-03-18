@@ -22,10 +22,10 @@ const dataMinutes = document.querySelector('[data-minutes]')
 const dataSeconds = document.querySelector('[data-seconds]')
 // console.log(dataSeconds);
 
-let changeTime;
-let presentTime;
-let deltaTime;
-let transformTime;
+// let changeTime;
+// let presentTime;
+// let deltaTime;
+// let transformTime;
 
 // кнопка изначально disabled
 btnEl.setAttribute('disabled', true);
@@ -36,22 +36,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-       
-        // введенное пользователем значение даты
-        changeTime = selectedDates[0];
-        console.log(changeTime);
-
-        // дата на текущий момент
-        presentTime = new Date();
-        console.log(presentTime);
-
-        // значение для старта тфймера
-        deltaTime = changeTime - presentTime;
-        console.log(deltaTime);
-
-        transformTime = convertMs(deltaTime);
-        console.log(transformTime);
-
+        
         // если введенное значение меньше текущего ввести сообщение
         // если все ок,то разблокировать кнопку для клика и отправки для таймера
         if (selectedDates[0] < new Date()) {
@@ -61,7 +46,7 @@ const options = {
         } else {
             btnEl.removeAttribute('disabled');
             // const transformTime = convertMs(deltaTime);
-            btnEl.addEventListener('click', сountdownTime(transformTime));
+            btnEl.addEventListener('click', onStartBtnClick);
         }
                
     }
@@ -71,19 +56,45 @@ const options = {
 // инициализация библиотеки на элементе input[type="text"]
 const inputDate = flatpickr('input[type="text"]', options);
 
-function сountdownTime({ days, hours, minutes, seconds }) {
-        
-    const timeId = setInterval(() => {
-        dataDays.innerText = `${days}`;
-        dataHours.innerText = `${hours}`;
-        dataMinutes.innerText = `${minutes}`;
-        dataSeconds.innerText = `${seconds}`;
-    }, 1000);
+function onStartBtnClick(event) {
+ // введенное пользователем значение даты
+       changeTime = inputDate.selectedDates[0];
+        console.log(changeTime);
 
-    if (deltaTime < 0) {
-        clearInterval(timeId);
-        return;
-    }
+        // дата на текущий момент
+        const presentTime = new Date();
+        console.log(presentTime);
+
+        // значение для старта тaймера
+       const deltaTime = changeTime - presentTime;
+        console.log(deltaTime);
+
+       const transformTime = convertMs(deltaTime);
+    console.log(transformTime);
+
+    сountdownTime(transformTime);
+}
+
+function сountdownTime({ days, hours, minutes, seconds }) {
+        console.log({ days, hours, minutes, seconds })
+      const timeId = setInterval(() => {
+        
+        dataDays.innerText = `${days}`;
+        dataHours.innerText = hours;
+        dataMinutes.innerText = minutes;
+        dataSeconds.innerText = seconds;
+        console.log(dataDays.innerText)
+        console.log(dataHours.innerText)
+        console.log(dataMinutes.innerText)
+        console.log(dataSeconds.innerText)
+
+    //     if (deltaTime < 0) {
+    //     clearInterval(timeId);
+    //     return;
+    // }
+    }, 1000);
+   
+    
 }
 
 function convertMs(ms) {
