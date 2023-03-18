@@ -22,11 +22,6 @@ const dataMinutes = document.querySelector('[data-minutes]')
 const dataSeconds = document.querySelector('[data-seconds]')
 // console.log(dataSeconds);
 
-// let changeTime;
-// let presentTime;
-// let deltaTime;
-// let transformTime;
-
 // кнопка изначально disabled
 btnEl.setAttribute('disabled', true);
 
@@ -56,46 +51,48 @@ const options = {
 // инициализация библиотеки на элементе input[type="text"]
 const inputDate = flatpickr('input[type="text"]', options);
 
-function onStartBtnClick(event) {
- // введенное пользователем значение даты
-       changeTime = inputDate.selectedDates[0];
-        console.log(changeTime);
+    function onStartBtnClick(event) {
+        
+        const timeId = setInterval(() => {
 
-        // дата на текущий момент
-        const presentTime = new Date();
-        console.log(presentTime);
+          // введенное пользователем значение даты
+            changeTime = inputDate.selectedDates[0];
+            console.log(changeTime);
 
-        // значение для старта тaймера
-       const deltaTime = changeTime - presentTime;
-        console.log(deltaTime);
+            // дата на текущий момент
+            const presentTime = new Date();
+            console.log(presentTime);
 
-       const transformTime = convertMs(deltaTime);
-    console.log(transformTime);
+            // значение для старта тaймера
+            const deltaTime = changeTime - presentTime;
+            console.log(deltaTime);
 
-    сountdownTime(transformTime);
-}
+            // Конвертируем дату 00:00:00:00
+            const transformTime = convertMs(deltaTime);
+            console.log(transformTime);
+
+            // вызываем функцию по записи времени в таймер
+            сountdownTime(transformTime);
+
+            // когда таймер закончился очищаем интервал
+           if (deltaTime < 1) {
+           clearInterval(timeId);
+           return;
+    }
+
+        }, 1000);
+    }
 
 function сountdownTime({ days, hours, minutes, seconds }) {
-        console.log({ days, hours, minutes, seconds })
-      const timeId = setInterval(() => {
-        
-        dataDays.innerText = `${days}`;
-        dataHours.innerText = hours;
-        dataMinutes.innerText = minutes;
-        dataSeconds.innerText = seconds;
-        console.log(dataDays.innerText)
-        console.log(dataHours.innerText)
-        console.log(dataMinutes.innerText)
-        console.log(dataSeconds.innerText)
-
-    //     if (deltaTime < 0) {
-    //     clearInterval(timeId);
-    //     return;
-    // }
-    }, 1000);
-   
-    
+                   
+    dataDays.innerText = days;
+    dataHours.innerText = hours;
+    dataMinutes.innerText = minutes;
+    dataSeconds.innerText = seconds;
+            
 }
+
+// функция для конвертации времени
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -116,7 +113,7 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
     
-
+// функция для добавления в интерфейсе таймера 0, если в числе меньше двух символов
 function addLeadingZero(value) {
 return String(value).padStart(2, '0');
 }
