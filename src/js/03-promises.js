@@ -15,7 +15,7 @@ btnEl.addEventListener('submit', handleSubmit);
     const { delay, step, amount } = e.currentTarget;
 
     let inputDelay = Number(delay.value);
-    const inputStep = Number(step.value);
+    let inputStep = Number(step.value);
     const inputAmount = Number(amount.value);
 
     console.log(inputDelay);
@@ -23,9 +23,12 @@ btnEl.addEventListener('submit', handleSubmit);
     console.log(inputAmount);
     
     for (let i = 0; i <= inputAmount; i += 1) {
-      // inputDelay;
-      inputDelay = inputDelay + inputStep * 0;
-      inputDelay = inputDelay + inputStep*1;
+
+      inputDelay;
+      inputStep;
+
+      inputDelay = inputDelay + inputStep;
+      
       console.log(inputDelay)
       console.log(inputStep);
 
