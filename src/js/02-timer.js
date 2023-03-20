@@ -1,5 +1,8 @@
 import flatpickr from "flatpickr";
 console.log(flatpickr);
+
+import Notiflix from 'notiflix';
+
 // Дополнительный импорт стилей
 import "flatpickr/dist/flatpickr.min.css";
 
@@ -36,7 +39,7 @@ const options = {
         // если все ок,то разблокировать кнопку для клика и отправки для таймера
         if (selectedDates[0] < new Date()) {
             
-            window.alert('Please choose a date in the future');
+            Notiflix.Report.info('Please choose a date in the future');
             
         } else {
             btnEl.removeAttribute('disabled');
