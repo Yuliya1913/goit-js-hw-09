@@ -23,16 +23,8 @@ btnEl.addEventListener('submit', handleSubmit);
     console.log(inputAmount);
     
     for (let i = 0; i < inputAmount; i += 1) {
-
-      inputDelay;
-      inputStep;
-
-      inputDelay = inputDelay + inputStep;
-      
-      console.log(inputDelay)
-      console.log(inputStep);
-
-      // вызов функции по созданию промиса и передаем в качестве аргументов 
+          
+      // вызываем функции по созданию промиса и передаем в качестве аргументов 
       // номер промиса и задержку с учетом Step на каждой итерации
 
       createPromise(i+1, inputDelay)
@@ -47,7 +39,9 @@ btnEl.addEventListener('submit', handleSubmit);
            // использовала библиотеку для вывода окна отрицательного ответа
           Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         })
-    
+      
+      // при следующей итерации добавляем Step
+      inputDelay = inputDelay + inputStep;
     }
   
 }
@@ -85,6 +79,15 @@ function createPromise(position, delay) {
   
 
 
+
+
+
+
+
+
+
+
+
 // function createPromise(position, delay) {
 //   const shouldResolve = Math.random() > 0.3;
 //   if (shouldResolve) {
@@ -102,10 +105,7 @@ function createPromise(position, delay) {
 
 
 
-
-
-
-// 2 вариант
+// 2 вариант когда промис возвращается не в качестве объекта значений свойств
 
 // import Notiflix from 'notiflix';
 // console.log(Notiflix);
@@ -131,12 +131,8 @@ function createPromise(position, delay) {
 //     console.log(inputStep);
 //     console.log(inputAmount);
     
-//     for (let i = 0; i <= inputAmount; i += 1) {
-//       inputDelay = inputDelay + inputStep * 0;
-//       inputDelay = inputDelay + inputStep*1;
-//       console.log(inputDelay)
-//       console.log(inputStep);
-
+//     for (let i = 0; i < inputAmount; i += 1) {
+      
 //       // вызов функции по созданию промиса и передаем в качестве аргументов 
 //       // номер промиса и задержку с учетом Step на каждой итерации
 
@@ -152,7 +148,9 @@ function createPromise(position, delay) {
 //            // использовала библиотеку для вывода окна отрицательного ответа
 //           Notiflix.Notify.failure(res);
 //         })
-    
+      
+//       // при следующей итерации добавляем Step
+//           inputDelay = inputDelay + inputStep;
 //     }
   
 // }
