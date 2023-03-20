@@ -35,7 +35,7 @@ btnEl.addEventListener('submit', handleSubmit);
       // вызов функции по созданию промиса и передаем в качестве аргументов 
       // номер промиса и задержку с учетом Step на каждой итерации
 
-      createPromise(i+1, inputDelay)
+      createPromise(i, inputDelay)
         .then(({ position, delay }) => {
           // console.log(res);
           // использовала библиотеку для вывода окна положительного ответа 
