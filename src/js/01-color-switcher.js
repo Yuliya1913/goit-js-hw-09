@@ -7,6 +7,7 @@ console.log(btnStartEl);
 // ссылка на кнопку стоп
 const btnStopEl = document.querySelector('[data-stop]');
 console.log(btnStopEl);
+let timerId;
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -16,11 +17,13 @@ function getRandomHexColor() {
 // кнопка старт станет неактивной, добавляя атрибут disabled
 const changeColor = () => {
     
-    const timerId = setInterval(() => {
+    timerId = setInterval(() => {
         bodyEl.style.backgroundColor = `${getRandomHexColor()}`;
         btnStartEl.setAttribute('disabled', true);
         
     }, 1000);
+
+    
 } 
 
 // при клике на кнопку стоп остановится изменение цвета
