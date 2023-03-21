@@ -13,14 +13,16 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 };
 
-// при клике на кнопку изменится body на рандомный цвет с интервалом в 1секунду
-// кнопка старт станет неактивной, добавляя атрибут disabled
+// при клике на кнопку сделаем сразу кнопку старт неактивной, добавляя атрибут disabled
+// после изменится body на рандомный цвет с интервалом в 1секунду
+
 const changeColor = () => {
     
-    timerId = setInterval(() => {
+    btnStartEl.setAttribute('disabled', true);
+    
+     timerId = setInterval(() => {
         bodyEl.style.backgroundColor = `${getRandomHexColor()}`;
-        btnStartEl.setAttribute('disabled', true);
-        
+           
     }, 1000);
 
     
