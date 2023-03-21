@@ -59,7 +59,7 @@ const inputDate = flatpickr('input[type="text"]', options);
         const timeId = setInterval(() => {
 
           // введенное пользователем значение даты
-            changeTime = inputDate.selectedDates[0];
+            const changeTime = inputDate.selectedDates[0];
             console.log(changeTime);
 
             // дата на текущий момент

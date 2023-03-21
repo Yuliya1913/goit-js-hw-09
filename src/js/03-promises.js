@@ -136,7 +136,7 @@ function createPromise(position, delay) {
 //       // вызов функции по созданию промиса и передаем в качестве аргументов 
 //       // номер промиса и задержку с учетом Step на каждой итерации
 
-//       createPromise(i+1, inputDelay)
+//       createPromise(i+1, inputDelay + inputStep * i)
 //         .then(res => {
 //           // console.log(res);
 //           // использовала библиотеку для вывода окна положительного ответа 
@@ -149,8 +149,6 @@ function createPromise(position, delay) {
 //           Notiflix.Notify.failure(res);
 //         })
       
-//       // при следующей итерации добавляем Step
-//           inputDelay = inputDelay + inputStep;
 //     }
   
 // }

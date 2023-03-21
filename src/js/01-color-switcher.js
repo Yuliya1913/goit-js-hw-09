@@ -16,7 +16,7 @@ function getRandomHexColor() {
 // кнопка старт станет неактивной, добавляя атрибут disabled
 const changeColor = () => {
     
-    timerId = setInterval(() => {
+    const timerId = setInterval(() => {
         bodyEl.style.backgroundColor = `${getRandomHexColor()}`;
         btnStartEl.setAttribute('disabled', true);
         
